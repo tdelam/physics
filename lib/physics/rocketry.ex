@@ -1,4 +1,4 @@
-defmodule Converter do
+defmodule Physics.Converter do
   
   def to_nearest_tenth(val) do
     Float.ceil(val, 1)
@@ -12,7 +12,7 @@ defmodule Converter do
     (miles * 5.36819e-6) |> round_down
   end
 
-  def to_light_seconds({:meters meters}) do
+  def to_light_seconds({:meters, meters}) do
     (meters * 3.335638620368e-9) |> round_down
   end
 
@@ -30,8 +30,8 @@ defmodule Physics.Rocketry do
   def escape_velocity(planet) when is_map(planet) do
     planet
       |> calculate_escape
-      |> Convertor.to_km
-      |> Convertor.to_nearest_tenth        
+      |> Physics.Converter.to_km
+      |> Physics.Converter.to_nearest_tenth        
   end
 
   defp calculate_escape(%{ mass: mass, radius: radius}) do
